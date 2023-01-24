@@ -12,7 +12,7 @@ const initialState = {
 const ContextProvider = ({children}) => {
   return (
     <StateContext.Provider value={{test: 'test'}}>
-        {children}
+        
 
     </StateContext.Provider>
   )
