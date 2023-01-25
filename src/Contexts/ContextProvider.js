@@ -1,19 +1,19 @@
-import {React,useState,useContext,createContext} from "react";
+import { React, useState, useContext, createContext } from "react";
 const StateContext = createContext();
 const initialState = {
-    chart: false,
-    cart: false,
-    userProfile: false,
-    notification: false
+  chart: false,
+  cart: false,
+  userProfile: false,
+  notification: false
 
 
 }
 
-const ContextProvider = ({children}) => {
+const ContextProvider = ({ children }) => {
   return (
-    <StateContext.Provider value={{test: 'test'}}>
-        
+    <StateContext.Provider value={{ test: 'test' }}>
 
+      {children}
     </StateContext.Provider>
   )
 }
