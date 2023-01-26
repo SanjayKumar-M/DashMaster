@@ -10,12 +10,14 @@ const initialState = {
 }
 
 const ContextProvider = ({ children }) => {
+  const [activeMenu, setactiveMenu] = useState(true)
   return (
-    <StateContext.Provider value={{ test: 'test' }}>
+    <StateContext.Provider value={{ activeMenu }}>
 
       {children}
     </StateContext.Provider>
   )
 }
+export const useStateContext = () =>useContext(StateContext)
 
 export default ContextProvider
