@@ -10,7 +10,7 @@ import { useStateContext } from './Contexts/ContextProvider';
 
 const App = () => {
   const {activeMenu} = useStateContext();
-  const activeMenu = true
+  
   return (
     <div>
       <BrowserRouter>
