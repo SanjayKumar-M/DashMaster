@@ -5,9 +5,11 @@ import { TooltipComponent } from '@syncfusion/ej2-react-popups'
 import { FiSettings } from 'react-icons/fi'
 import { Navbar, Footer, Sidebar, ThemeSettings } from './Components'
 import { Ecommerce, Orders, Calender,Line, Employees, Stacked, Pyramid, Customer, Kanban, Area, Bar, Pie, Financial, ColorPicker, ColorMapping, Editor } from './Pages'
+import { useStateContext } from './Contexts/ContextProvider';
 
 
 const App = () => {
+  const {activeMenu} = useStateContext();
   const activeMenu = true
   return (
     <div>
