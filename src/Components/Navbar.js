@@ -30,6 +30,19 @@ const NavButton = ({ title, customFunc, icon, color, dotColor }) => (
 
 const Navbar = () => {
   const { currentColor, activeMenu, setActiveMenu, handleClick, isClicked, setScreenSize, screenSize } = useStateContext();
+  useEffect(() => {
+    const handleResize = () => setScreenSize(window.innerWidth);
+
+    window.addEventListener('resize', handleResize);
+
+    return () => window.removeEventListener('resize', handleResize);
+  });
+
+  useEffect(() => {
+    setActiveMenu(screenSize > 900);
+  }, [screenSize, setActiveMenu]);
+
+
 
 
   const handleActiveMenu = () => setActiveMenu(!activeMenu);
@@ -37,11 +50,11 @@ const Navbar = () => {
   return (
     <div className="flex justify-between p-2 md:ml-6 md:mr-6 relative">
 
-      <NavButton title="Menu" icon={<AiOutlineMenu />} />
+      <NavButton title="Menu" customFunc={handleActiveMenu} color={currentColor} icon={<AiOutlineMenu />} />
       <div className="flex">
         <NavButton title="Cart" icon={<FiShoppingCart />} />
         <NavButton title="Chat" dotColor="#03C9D7" icon={<BsChatLeft />} />
-        <NavButton title="Notification" dotColor="rgb(254, 201, 15)" icon={<RiNotification3Line />} />
+        <NavButton title="Notifications" dotColor="rgb(254, 201, 15)" icon={<RiNotification3Line />} />
         <TooltipComponent content="Profile" position="BottomCenter">
           <div className="flex items-center gap-2 cursor-pointer p-1 hover:bg-light-gray rounded-lg" >
             <img className="rounded-full w-8 h-8" src={avatar} alt="user-profile" />
@@ -55,6 +68,10 @@ const Navbar = () => {
           </div>
         </TooltipComponent>
 
+        {isClicked.cart && (<Cart />)}
+        {isClicked.chat && (<Chat />)}
+        {isClicked.notifications && (<Notifications />)}
+        {isClicked.userProfile && (<UserProfile />)}
 
       </div>
     </div>
