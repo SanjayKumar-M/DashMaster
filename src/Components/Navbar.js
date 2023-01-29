@@ -10,6 +10,24 @@ import avatar from '../data/avatar.jpg'
 import { Cart, Chat, Notifications, UserProfile } from '.'
 import { useStateContext } from '../Contexts/ContextProvider'
 
+const NavButton = ({ title, customFunc, icon, color, dotColor }) => (
+  <TooltipComponent content={title} position="BottomCenter">
+    <button
+      type="button"
+      onClick={() => customFunc()}
+      style={{ color }}
+      className="relative text-xl rounded-full p-3 hover:bg-light-gray"
+    >
+      <span
+        style={{ background: dotColor }}
+        className="absolute inline-flex rounded-full h-2 w-2 right-2 top-2"
+      />
+      {icon}
+    </button>
+  </TooltipComponent>
+);
+
+
 const Navbar = () => {
   const { currentColor, activeMenu, setActiveMenu, handleClick, isClicked, setScreenSize, screenSize } = useStateContext();
 
@@ -25,15 +43,8 @@ const Navbar = () => {
         <NavButton title="Chat" dotColor="#03C9D7" icon={<BsChatLeft />} />
         <NavButton title="Notification" dotColor="rgb(254, 201, 15)" icon={<RiNotification3Line />} />
         <TooltipComponent content="Profile" position="BottomCenter">
-          <div
-            className="flex items-center gap-2 cursor-pointer p-1 hover:bg-light-gray rounded-lg"
-
-          >
-            <img
-              className="rounded-full w-8 h-8"
-              src={avatar}
-              alt="user-profile"
-            />
+          <div className="flex items-center gap-2 cursor-pointer p-1 hover:bg-light-gray rounded-lg" >
+            <img className="rounded-full w-8 h-8" src={avatar} alt="user-profile" />
             <p>
               <span className="text-gray-400 text-14">Hi,</span>{' '}
               <span className="text-gray-400 font-bold ml-1 text-14">
